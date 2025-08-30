@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Mobiyashmi Dayalan | Portfolio</title>
+
+  <!-- Tailwind (only one include) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter','ui-sans-serif','system-ui','Segoe UI','Roboto','Helvetica','Arial','sans-serif'],
+            mono: ['JetBrains Mono','ui-monospace','SFMONo-Regular','Menlo','monospace']
+          },
+          colors: {
+            accent: {
+              DEFAULT: '#f5d742',
+              50: '#F1EFFE',100:'#E6E2FF',200:'#C9C0FF',300:'#AB9EFF',400:'#8D7CFF',
+              500:'#6C5CE7',600:'#5B4ED1',700:'#4A40BA',800:'#3A329C',900:'#2A2577'
+            }
+          },
+          boxShadow: { soft: '0 10px 30px -10px rgb(0 0 0 / 0.25)' }
+        }
+      }
+    }
+  </script>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+  <!-- Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <style>
+    :root{ --radius: 1rem }
+    html{ scroll-padding-top: 60px }
+
+    /* Toggler icon always visible */
+    .navbar-dark .navbar-toggler-icon,
+    .navbar-light .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28255,255,255,0.85%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+    }
+
+    .glass{ background: rgb(255 255 255 / .7); backdrop-filter: blur(10px) }
+    .glass-dark{ background: rgb(10 10 10 / .6); backdrop-filter: blur(10px) }
+    .shadow-soft{ box-shadow: 0 10px 30px -10px rgb(0 0 0 / .25) }
+    .hero-gradient{
+      background:
+        radial-gradient(80rem 40rem at 10% 10%, #c7d2fe22 20%, transparent 60%),
+        radial-gradient(60rem 30rem at 90% 10%, #a78bfa22 15%, transparent 60%),
+        radial-gradient(80rem 40rem at 50% 120%, #6ee7b722 10%, transparent 60%)
+    }
+    .card-hover{ transition: transform .25s ease, box-shadow .25s ease }
+    .card-hover:hover{ transform: translateY(-4px); box-shadow: 0 20px 40px -20px rgb(0 0 0 / .35) }
+    .underline-gradient{ background: linear-gradient(90deg, #f5d742, #22c55e); -webkit-background-clip: text; background-clip: text; color: transparent }
+    @media (prefers-reduced-motion: reduce){ .card-hover{ transition: none } }
+
+    /* NAVBAR: keep dark + readable when collapsed */
+    nav.navbar {
+      background: linear-gradient(180deg, rgba(10,10,10,0.95), rgba(10,10,10,0.98));
+      z-index: 40;
+    }
+    nav .navbar-brand { color: #e6eef8; }
+    nav .nav-link { color: rgba(255,255,255,0.95) !important; }
+    nav .nav-link:hover { color: #f5d742 !important; text-decoration: underline; }
+
+    /* Mobile menu styling (keeps look similar to desktop collapsed area) */
+    #mobileMenu {
+      background: rgba(10,10,10,0.98);
+      padding: .75rem 1rem;
+    }
+    #mobileMenu a { display:block; padding:.5rem 0; color: #fff; }
+    #mobileMenu a:hover { color: #f5d742; }
+
+    /* Blob & skill styles (kept as you had) */
+    .blob {
+      width: 350px; height: 350px;
+      background: linear-gradient(135deg, #f5d742, #ffffff);
+      border-radius: 60% 40% 35% 65%/60% 35% 60% 40%;
+      display:flex;align-items:center;justify-content:center;overflow:hidden;
+      box-shadow: 0 8px 20px rgba(245,215,66,0.4);
+    }
+    .blob img { width: 90%; height: 94%; object-fit: cover; border-radius: 50%; }
+    .skill-card { background: #1e293b; border-radius: 1rem; padding: 2rem; transition: all 0.4s ease; box-shadow: 0 0 15px rgba(255, 215, 0, 0.2); }
+    .skill-card:hover { transform: translateY(-8px) scale(1.03); box-shadow: 0 0 30px #ffd700; }
+    .skill-title { font-size: 1.3rem; font-weight: 700; color: #f5d742; margin-bottom: 1rem; }
+    .skill-list { display:flex;flex-wrap:wrap;gap:.8rem; }
+    .skill-chip { display:flex; align-items:center; gap:.5rem; background:#e2e8f0; color:#000; padding:.6rem 1rem; border-radius:.7rem; font-weight:500; transition:.3s; }
+    .skill-chip img { width:26px; height:26px; }
+    .skill-chip:hover { background:#ffd700; color:#000; transform:scale(1.08); }
+  </style>
+</head>
+<body class="bg-[#0f172a] text-gray-200">
+
+  <!-- NAVBAR -->
+  <nav class="fixed top-0 left-0 w-full z-50 bg-slate-900/90 backdrop-blur shadow" style="height:60px;padding-top: 6px;">
+    <div class="w-full flex items-center justify-between px-6">
+      <div class="text-xl font-bold"><span class="text-4xl text-accent">M</span>obiyashmi</div>
+
+      <!-- Desktop nav -->
+      <ul class="hidden md:flex gap-6 font-medium">
+        <li><a href="#intro" class="hover:text-accent">Intro</a></li>
+        <li><a href="#about" class="hover:text-accent">About</a></li>
+        <li><a href="#skills" class="hover:text-accent">Skills</a></li>
+        <li><a href="#projects" class="hover:text-accent">Projects</a></li>
+        <li><a href="#experience" class="hover:text-accent">Experience</a></li>
+        <li><a href="#achievements" class="hover:text-accent">Achievements</a></li>
+        <li><a href="#contact" class="hover:text-accent">Contact</a></li>
+      </ul>
+
+      <div class="flex items-center gap-3">
+        <div class="hidden md:flex items-center gap-3 text-accent ml-4">
+          <a href="https://linkedin.com/in/mobiyashmi" target="_blank"><i class="bi bi-linkedin text-xl"></i></a>
+          <a href="mailto:mobiyashmidayalan@gmail.com"><i class="bi bi-envelope text-xl"></i></a>
+          <a href="https://github.com/MOBIYASHMI" target="_blank"><i class="bi bi-github text-xl"></i></a>
+        </div>
+
+        <!-- Mobile toggle -->
+        <button id="mobileToggle" class="md:hidden text-accent text-2xl" aria-label="Toggle menu">
+          <i class="bi bi-list"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile menu (hidden by default) -->
+    <div id="mobileMenu" class="md:hidden hidden px-6 pb-4">
+      <a href="#intro">Intro</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#achievements">Achievements</a>
+      <a href="#contact">Contact</a>
+      <div class="pt-2 flex gap-3 text-accent">
+        <a href="https://linkedin.com/in/mobiyashmi" target="_blank"><i class="bi bi-linkedin"></i></a>
+        <a href="mailto:mobiyashmidayalan@gmail.com"><i class="bi bi-envelope"></i></a>
+        <a href="https://github.com/MOBIYASHMI" target="_blank"><i class="bi bi-github"></i></a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- INTRO -->
+  <section id="intro" class="pt-20 flex items-center justify-center min-h-screen w-full bg-slate-800">
+    <div class="flex flex-col-reverse md:flex-row items-center md:gap-20 gap-12 w-full max-w-8xl mx-auto px-6">
+      <!-- Text -->
+      <div class="md:w-1/2 text-center md:text-left">
+        <h1 style="font-size: 40px;">
+          Hi, I'm
+        </h1><br>
+        <h1 class="text-xl font-bold">
+          <span class="typing" style="font-size: 50px;color: #f5d742;"></span>
+        </h1><br>
+        <h1 class="font-bold text-4xl mb-4">Java Full Stack Developer</h1>
+        <p class="text-gray-300">
+          Results-driven Java Full Stack Developer with hands-on experience in designing automation tools, achieving a 99% reduction in manual effort and enhancing operational efficiency. Currently working in a System Engineering role with active involvement in backend development tasks using Java. Eager to deepen expertise in full-stack development and apply strong problem-solving skills to deliver impactful software solutions.
+        </p>
+        <div class="mt-6">
+          <a href="https://drive.google.com/file/d/1a2qPkT_MCgGAWoX7Zeaj1WAEiC-StAw2/view?usp=drive_link" target="_blank" 
+            class="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-accent text-black font-semibold shadow-soft hover:scale-105 transition">
+            Resume<i class="bi bi-download"></i>
+          </a>
+        </div>
+      </div>
+      
+      <!-- Blob -->
+      <div class="md:w-1/2 flex justify-center">
+        <div class="blob">
+          <img src="images/profile.jpg" alt="Profile Photo">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ABOUT ================= -->
+  <section id="about" class="py-12 md:py-20 border-t border-neutral-800/70">
+    <div class="max-w-5xl mx-auto px-4">
+      <div class="grid md:grid-cols-3 gap-10 items-start">
+        <div class="md:col-span-1">
+          <h2 class="text-2xl font-bold">About Me</h2>
+          <p class="text-neutral-400 mt-2">Who I am & what I do</p>
+        </div>
+        <div class="md:col-span-2 space-y-4 leading-relaxed text-neutral-300">
+          <p>
+            I’m a <span class="text-accent">Java Full Stack Developer</span> based in Bangalore, with a passion for building efficient, scalable software solutions that solve real-world problems. At <span class="text-accent">Times of India</span>, I’ve designed automation utilities in Java that slashed manual effort by 99%, integrated Elasticsearch for advanced search capabilities, and ensured system stability with 99.9% uptime through proactive issue resolution.
+          </p>
+          <p>
+            My technical foundation includes Java, Spring Boot, and full-stack tools like Thymeleaf, MySQL, and JWT for secure applications. Beyond coding, I thrive on <span class="text-accent">problem-solving, mentoring teams</span>, and continuously learning to stay ahead in fast-evolving tech landscapes. I’m committed to delivering high-impact solutions that drive efficiency and innovation.
+          </p>
+          <div class="flex flex-wrap gap-2 pt-2">
+            <span class="px-3 py-1 rounded-full text-xs font-semibold bg-neutral-800 border border-neutral-700">Open to full-time opportunities</span>
+            <span class="px-3 py-1 rounded-full text-xs font-semibold bg-neutral-800 border border-neutral-700">Available for freelance projects</span>
+            <span class="px-3 py-1 rounded-full text-xs font-semibold bg-neutral-800 border border-neutral-700">Remote-friendly</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS SECTION -->
+  <section id="skills" class="py-12 md:py-20 bg-slate-900">
+    <div class="max-w-7xl mx-auto px-6">
+      
+      <!-- Header (Removed typing effect, aligned left) -->
+      <div class="mb-16">
+        <h2 class="text-2xl font-bold text-white">Skills</h2>
+      </div>
+
+      <!-- Skills Grid -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div class="skill-card">
+          <h3 class="skill-title">Programming Languages</h3>
+          <div class="skill-list">
+            <span class="skill-chip"><img src="https://skillicons.dev/icons?i=java"/><p>Java</p></span>
+            <span class="skill-chip"><img src="https://skillicons.dev/icons?i=python"/><p>Python</p></span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <h3 class="skill-title">Frameworks</h3>
+          <div class="skill-list">
+            <span class="skill-chip"><img src="https://skillicons.dev/icons?i=spring"/><p>Spring Boot</p></span>
+            <span class="skill-chip"><img src="https://skillicons.dev/icons?i=spring"/><p>Spring Security</p></span>
+            <span class="skill-chip"><img src="https://skillicons.dev/icons?i=thymeleaf"/><p>Thymeleaf</p></span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <h3 class="skill-title">Web & UI</h3>
+          <div class="skill-list">
+            <span class="skill-chip"><img src="https://skillicons.dev/icons?i=html"/><p>HTML</p></span>
+            <span class="skill-chip"><img src="https://skillicons.dev/icons?i=css"/><p>CSS</p></span>
+            <span class="skill-chip"><img src="https://skillicons.dev/icons?i=js"/><p>JavaScript</p></span>
+            <span class="skill-chip"><img src="https://skillicons.dev/icons?i=bootstrap"/><p>Bootstrap</p></span>
+            <span class="skill-chip"><img src="https://skillicons.dev/icons?i=tailwind"/><p>Tailwind CSS</p></span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <h3 class="skill-title">Databases & APIs</h3>
+          <div class="skill-list">
+            <span class="skill-chip"><img src="https://skillicons.dev/icons?i=mysql"/><p>MySQL</p></span>
+            <span class="skill-chip"><img src="https://skillicons.dev/icons?i=mongodb"/><p>MongoDB</p></span>
+            <span class="skill-chip"><img src="https://skillicons.dev/icons?i=rest"/><p>REST APIs</p></span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <h3 class="skill-title">Tools & Platforms</h3>
+          <div class="skill-list">
+            <span class="skill-chip"><img src="https://skillicons.dev/icons?i=github"/><p>GitHub</p></span>
+            <span class="skill-chip"><img src="https://skillicons.dev/icons?i=maven"/><p>Maven</p></span>
+            <span class="skill-chip"><img src="https://skillicons.dev/icons?i=postman"/><p>Postman</p></span>
+            <span class="skill-chip"><img src="https://skillicons.dev/icons?i=swagger"/><p>Swagger</p></span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <h3 class="skill-title">Testing & Security</h3>
+          <div class="skill-list">
+            <span class="skill-chip"><img src="https://skillicons.dev/icons?i=junit"/><p>JUnit</p></span>
+            <span class="skill-chip"><img src="https://skillicons.dev/icons?i=mockito"/><p>Mockito</p></span>
+            <span class="skill-chip"><img src="https://skillicons.dev/icons?i=jwt"/><p>JWT</p></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+<!-- ================= PROJECTS ================= -->
+<section id="projects" class="py-20 bg-gray-900 text-white">
+  <div class="container mx-auto px-6">
+    <div class="mb-8 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+      <div>
+        <h2 class="text-2xl font-bold text-white mb-2">Projects</h2>
+        <p class="text-neutral-400">Showcasing practical applications of full-stack skills in real-world scenarios.</p>
+      </div>
+      <div class="flex flex-wrap gap-2 justify-center" id="projectFilters">
+        <button class="btn btn-sm btn-outline-light rounded-pill active" data-filter="all">All</button>
+        <button class="btn btn-sm btn-outline-light rounded-pill" data-filter="backend">Backend</button>
+        <button class="btn btn-sm btn-outline-light rounded-pill" data-filter="frontend">Frontend</button>
+        <button class="btn btn-sm btn-outline-light rounded-pill" data-filter="fullstack">Full-Stack</button>
+      </div>
+    </div>
+
+    <!-- Responsive Grid -->
+    <div class="project-container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="projectGrid">
+
+      <!-- Project 1 -->
+      <article class="group card-hover rounded-3xl overflow-hidden border border-neutral-800 bg-neutral-900 flex flex-col h-full" data-tags="backend">
+        <div class="relative h-48 overflow-hidden">
+          <img class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.05]" src="images/elastic-search.jpg" alt="Elasticsearch project screenshot">
+        </div>
+        <div class="p-4 flex flex-col flex-1">
+          <div class="flex items-center justify-between">
+            <h3 class="font-semibold text-sm">Elasticsearch Integration Project</h3>
+            <a href="https://github.com/MOBIYASHMI/Elastic-Search" class="inline-flex items-center gap-1 text-accent hover:underline text-xs">View <i data-lucide="external-link"></i></a>
+          </div>
+          <p class="mt-1 text-xs text-neutral-400">A Java Spring Boot project with a Python microservice, integrating Elasticsearch for search capabilities and using an ML model for embedding vectors.</p>
+          <div class="mt-2 flex flex-wrap gap-2">
+            <span class="text-xs px-1 py-0.5 rounded-full bg-neutral-800 border border-neutral-700">Java</span>
+            <span class="text-xs px-1 py-0.5 rounded-full bg-neutral-800 border border-neutral-700">Spring Boot</span>
+            <span class="text-xs px-1 py-0.5 rounded-full bg-neutral-800 border border-neutral-700">Python</span>
+            <span class="text-xs px-1 py-0.5 rounded-full bg-neutral-800 border border-neutral-700">Elasticsearch</span>
+            <span class="text-xs px-1 py-0.5 rounded-full bg-neutral-800 border border-neutral-700">Machine Learning</span>
+          </div>
+          <div class="mt-auto pt-2 flex items-center gap-2">
+            <a href="https://github.com/MOBIYASHMI/Elastic-Search" class="inline-flex items-center gap-1 text-xs"><i data-lucide="github"></i> Code</a>
+            <button class="inline-flex items-center gap-1 text-xs" data-bs-toggle="modal" data-bs-target="#projectModal" data-title="Elasticsearch Integration Project" data-desc="Developed a Spring Boot application with a Python microservice to handle Elasticsearch indexing and search, utilizing an ML model for vector embeddings to enhance search relevance." data-img="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop">Details</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project 2 -->
+      <article class="group card-hover rounded-3xl overflow-hidden border border-neutral-800 bg-neutral-900 flex flex-col h-full" data-tags="fullstack">
+        <div class="relative h-48 overflow-hidden">
+          <img class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.05]" src="images/bus-booking.jpg" alt="Bus booking screenshot">
+        </div>
+        <div class="p-4 flex flex-col flex-1">
+          <div class="flex items-center justify-between">
+            <h3 class="font-semibold text-sm">Online Bus Ticket Booking Application</h3>
+            <a href="https://drive.google.com/drive/folders/1qYczcGIzxemnvFvlI8eLvE3qWQ7w7dpq?usp=drive_link" class="inline-flex items-center gap-1 text-accent hover:underline text-xs">View <i data-lucide="external-link"></i></a>
+          </div>
+          <p class="mt-1 text-xs text-neutral-400">Secure full-stack app for bus reservations with role-based access, JWT authentication, and comprehensive unit testing for reliability.</p>
+          <div class="mt-2 flex flex-wrap gap-2">
+            <span class="text-xs px-1 py-0.5 rounded-full bg-neutral-800 border border-neutral-700">Java</span>
+            <span class="text-xs px-1 py-0.5 rounded-full bg-neutral-800 border border-neutral-700">Spring Boot</span>
+            <span class="text-xs px-1 py-0.5 rounded-full bg-neutral-800 border border-neutral-700">Thymeleaf</span>
+            <span class="text-xs px-1 py-0.5 rounded-full bg-neutral-800 border border-neutral-700">MySQL</span>
+            <span class="text-xs px-1 py-0.5 rounded-full bg-neutral-800 border border-neutral-700">JWT</span>
+            <span class="text-xs px-1 py-0.5 rounded-full bg-neutral-800 border border-neutral-700">Spring Security</span>
+            <span class="text-xs px-1 py-0.5 rounded-full bg-neutral-800 border border-neutral-700">HTML/CSS/Bootstrap</span>
+            <span class="text-xs px-1 py-0.5 rounded-full bg-neutral-800 border border-neutral-700">JUnit/Mockito</span>
+          </div>
+          <div class="mt-auto pt-2 flex items-center gap-2">
+            <a href="https://github.com/MOBIYASHMI/TicketBooking" class="inline-flex items-center gap-1 text-xs"><i data-lucide="github"></i> Code</a>
+            <button class="inline-flex items-center gap-1 text-xs" data-bs-toggle="modal" data-bs-target="#projectModal" data-title="Online Bus Ticket Booking Application" data-desc="Developed REST APIs and integrated JWT-based authentication for secure log-in and role-based access (admin/passenger). Implemented reservation, seat selection, and cancellation functionality, with unit testing using JUnit and Mockito." data-img="https://images.unsplash.com/photo-1521747116042-5a810fda42c4?q=80&w=1200&auto=format&fit=crop">Details</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project 3 -->
+      <article class="group card-hover rounded-3xl overflow-hidden border border-neutral-800 bg-neutral-900 flex flex-col h-full" data-tags="fullstack">
+        <div class="relative h-48 overflow-hidden">
+          <img class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.05]" src="images/medical-management.jpg" alt="Appointment system screenshot">
+        </div>
+        <div class="p-4 flex flex-col flex-1">
+          <div class="flex items-center justify-between">
+            <h3 class="font-semibold text-sm">Appointment Management System</h3>
+            <a href="https://drive.google.com/drive/folders/1_HtNIaGCZQ8i71GzztKPJwVJeewS5Y7-?usp=drive_link" class="inline-flex items-center gap-1 text-accent hover:underline text-xs">View <i data-lucide="external-link"></i></a>
+          </div>
+          <p class="mt-1 text-xs text-neutral-400">Role-based secure system for managing appointments, with robust unit testing to ensure data validation and application reliability.</p>
+          <div class="mt-2 flex flex-wrap gap-2">
+            <span class="text-xs px-1 py-0.5 rounded-full bg-neutral-800 border border-neutral-700">Java</span>
+            <span class="text-xs px-1 py-0.5 rounded-full bg-neutral-800 border border-neutral-700">Spring Boot</span>
+            <span class="text-xs px-1 py-0.5 rounded-full bg-neutral-800 border border-neutral-700">Thymeleaf</span>
+            <span class="text-xs px-1 py-0.5 rounded-full bg-neutral-800 border border-neutral-700">MySQL</span>
+            <span class="text-xs px-1 py-0.5 rounded-full bg-neutral-800 border border-neutral-700">Spring Security</span>
+            <span class="text-xs px-1 py-0.5 rounded-full bg-neutral-800 border border-neutral-700">HTML/CSS/Bootstrap</span>
+            <span class="text-xs px-1 py-0.5 rounded-full bg-neutral-800 border border-neutral-700">JUnit/Mockito</span>
+          </div>
+          <div class="mt-auto pt-2 flex items-center gap-2">
+            <a href="https://github.com/MOBIYASHMI/MedicalManagement" class="inline-flex items-center gap-1 text-xs"><i data-lucide="github"></i> Code</a>
+            <button class="inline-flex items-center gap-1 text-xs" data-bs-toggle="modal" data-bs-target="#projectModal" data-title="Doctor-Patient Appointment Management System" data-desc="Designed a secure role-based login system for doctors and patients, enabling appointment booking, viewing, and cancellation. Implemented service-level unit testing using Mockito to ensure reliability and data validation." data-img="https://images.unsplash.com/photo-1585435557343-7b425eb5e67d?q=80&w=1200&auto=format&fit=crop">Details</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project 4 -->
+      <article class="group card-hover rounded-3xl overflow-hidden border border-neutral-800 bg-neutral-900 flex flex-col h-full" data-tags="fullstack">
+        <div class="relative h-48 overflow-hidden">
+          <img class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.05]" src="images/Employee-Management.jpg" alt="Appointment system screenshot">
+        </div>
+        <div class="p-4 flex flex-col flex-1">
+          <div class="flex items-center justify-between">
+            <h3 class="font-semibold text-sm">Employee Management System</h3>
+            <a href="https://github.com/MOBIYASHMI/EmployeeMangement" class="inline-flex items-center gap-1 text-accent hover:underline text-xs">View <i data-lucide="external-link"></i></a>
+          </div>
+          <p class="mt-1 text-xs text-neutral-400">Role-based secure system for managing appointments, with robust unit testing to ensure data validation and application reliability.</p>
+          <div class="mt-2 flex flex-wrap gap-2">
+            <span class="text-xs px-1 py-0.5 rounded-full bg-neutral-800 border border-neutral-700">Java</span>
+            <span class="text-xs px-1 py-0.5 rounded-full bg-neutral-800 border border-neutral-700">Spring Boot</span>
+            <span class="text-xs px-1 py-0.5 rounded-full bg-neutral-800 border border-neutral-700">Thymeleaf</span>
+            <span class="text-xs px-1 py-0.5 rounded-full bg-neutral-800 border border-neutral-700">MySQL</span>
+            <!-- <span class="text-xs px-1 py-0.5 rounded-full bg-neutral-800 border border-neutral-700">Spring Security</span> -->
+            <span class="text-xs px-1 py-0.5 rounded-full bg-neutral-800 border border-neutral-700">HTML/CSS/Bootstrap</span>
+            <!-- <span class="text-xs px-1 py-0.5 rounded-full bg-neutral-800 border border-neutral-700">JUnit/Mockito</span> -->
+          </div>
+          <div class="mt-auto pt-2 flex items-center gap-2">
+            <a href="https://github.com/MOBIYASHMI/EmployeeMangement" class="inline-flex items-center gap-1 text-xs"><i data-lucide="github"></i> Code</a>
+            <button class="inline-flex items-center gap-1 text-xs" data-bs-toggle="modal" data-bs-target="#projectModal" data-title="Doctor-Patient Appointment Management System" data-desc="Designed a secure role-based login system for doctors and patients, enabling appointment booking, viewing, and cancellation. Implemented service-level unit testing using Mockito to ensure reliability and data validation." data-img="https://images.unsplash.com/photo-1585435557343-7b425eb5e67d?q=80&w=1200&auto=format&fit=crop">Details</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project 5 -->
+      <article class="group card-hover rounded-3xl overflow-hidden border border-neutral-800 bg-neutral-900 flex flex-col h-full" data-tags="frontend">
+        <div class="relative h-48 overflow-hidden">
+          <img class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.05]" src="images/portfolio.jpg" alt="Portfolio project screenshot">
+        </div>
+        <div class="p-4 flex flex-col flex-1">
+          <div class="flex items-center justify-between">
+            <h3 class="font-semibold text-sm">Personal Portfolio Website</h3>
+            <a href="https://github.com/MOBIYASHMI/portfolio" class="inline-flex items-center gap-1 text-accent hover:underline text-xs">View <i data-lucide="external-link"></i></a>
+          </div>
+          <p class="mt-1 text-xs text-neutral-400">A responsive portfolio website built using HTML, CSS, JavaScript, Tailwind and Bootstrap to showcase projects and skills.</p>
+          <div class="mt-2 flex flex-wrap gap-2">
+            <span class="text-xs px-1 py-0.5 rounded-full bg-neutral-800 border border-neutral-700">HTML</span>
+            <span class="text-xs px-1 py-0.5 rounded-full bg-neutral-800 border border-neutral-700">CSS</span>
+            <span class="text-xs px-1 py-0.5 rounded-full bg-neutral-800 border border-neutral-700">JavaScript</span>
+            <span class="text-xs px-1 py-0.5 rounded-full bg-neutral-800 border border-neutral-700">Bootstrap</span>
+            <span class="text-xs px-1 py-0.5 rounded-full bg-neutral-800 border border-neutral-700">Tailwind CSS</span>
+          </div>
+          <div class="mt-auto pt-2 flex items-center gap-2">
+            <a href="https://github.com/MOBIYASHMI/portfolio" class="inline-flex items-center gap-1 text-xs"><i data-lucide="github"></i> Code</a>
+            <button class="inline-flex items-center gap-1 text-xs" data-bs-toggle="modal" data-bs-target="#projectModal" data-title="Personal Portfolio Website" data-desc="Created a dynamic portfolio site with a focus on user experience, featuring project showcases, skill highlights, and contact information using modern web technologies." data-img="https://images.unsplash.com/photo-1616469829755-9faef9e1f723?q=80&w=1200&auto=format&fit=crop">Details</button>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+
+
+  <!-- Project Modal -->
+  <div class="modal fade" id="projectModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content dark:bg-neutral-900 dark:text-neutral-100">
+        <div class="modal-header">
+          <h5 class="modal-title" id="projectModalLabel">Project Title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body space-y-3">
+          <img id="projectModalImg" class="w-100 rounded-3" src="" alt="Project preview" />
+          <p id="projectModalDesc" class="text-neutral-400"></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= EXPERIENCE ================= -->
+  <section id="experience" class="py-12 md:py-20">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="mb-8">
+        <h2 class="text-2xl font-bold text-white mb-2">Experience</h2>
+      </div>
+      <div class="space-y-6">
+        <div class="rounded-3xl p-6 border border-neutral-800 bg-neutral-900 card-hover">
+          <div class="flex flex-wrap items-center justify-between gap-3">
+            <div>
+              <h3 class="font-semibold text-accent">System Engineer · Times of India</h3>
+              <p class="text-sm text-neutral-400">Bangalore, Karnataka · July 2023 — Present</p>
+            </div>
+            <span class="px-3 py-1 rounded-full text-xs font-semibold bg-accent/10 text-accent">Full-time</span>
+          </div>
+          <ul class="mt-3 list-disc ms-5 text-neutral-300">
+            <li>Designed and developed a Java-based executable JAR utility to automate the distribution of plugins and fonts across distributed user systems, eliminating repetitive manual work and achieving 99% reduction in manual effort.</li>
+            <li>Implemented Elasticsearch integration using Java and Spring Boot, developing data ingestion pipelines, custom analyzers/tokenizers, indexing strategies, and REST-based search APIs with relevance ranking, enabling typo handling, autocomplete, and fuzzy search.</li>
+            <li>Resolved recurring issues in page processing applications by analyzing page component failures and ensuring stable workflows for editorial and design teams, ensuring 99.9% up-time.</li>
+            <li>Conducted functionality testing post-patch updates to ensure stability and performance.</li>
+            <li>Trained and guided non-technical teams on tool usage and upgrades, resulting in improved process efficiency and user adoption.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ACHIEVEMENTS (with Education + Hobbies) ================= -->
+  <section id="achievements" class="py-12 md:py-20 border-t border-neutral-800/70">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="mb-8">
+        <h2 class="text-2xl font-bold text-white mb-2">Achievements & More</h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+        <div class="rounded-3xl p-6 border border-neutral-800 bg-neutral-900 card-hover">
+          <div class="flex items-center gap-2 text-accent mb-2"><i data-lucide="trophy"></i> <h3 class="font-semibold">99% Reduction in Manual Effort</h3></div>
+          <p class="text-sm text-neutral-300">Achieved through automation utility development at Times of India.</p>
+        </div>
+        <div class="rounded-3xl p-6 border border-neutral-800 bg-neutral-900 card-hover">
+          <div class="flex items-center gap-2 text-accent mb-2"><i data-lucide="trophy"></i> <h3 class="font-semibold">99.9% System Uptime</h3></div>
+          <p class="text-sm text-neutral-300">Ensured stable workflows for editorial teams via issue resolution.</p>
+        </div>
+        <div class="rounded-3xl p-6 border border-neutral-800 bg-neutral-900 card-hover">
+          <div class="flex items-center gap-2 text-accent mb-2"><i data-lucide="trophy"></i> <h3 class="font-semibold">Java Full Stack Certification</h3></div>
+          <p class="text-sm text-neutral-300">Guvi · Issued February 2025</p>
+        </div>
+      </div>
+
+      <!-- EDUCATION + HOBBIES (added inside the achievements section as requested) -->
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="rounded-3xl p-6 border border-neutral-800 bg-neutral-900">
+          <h3 class="text-accent font-semibold mb-3">Education</h3>
+          <ul class="list-disc list-inside text-neutral-300">
+            <li>B.E. in Printing and Packaging Technology — College of Engineering Guindy, Chennai, Tamil Nadu (July 2019 – June 2023) · CGPA: 8.88</li>
+          </ul>
+        </div>
+        <div class="rounded-3xl p-6 border border-neutral-800 bg-neutral-900">
+          <h3 class="text-accent font-semibold mb-3">Hobbies</h3>
+          <ul class="list-disc list-inside text-neutral-300">
+            <li>Exploring new technologies and coding challenges</li>
+            <li>Mentoring and knowledge sharing</li>
+            <li>Reading tech blogs and problem-solving on platforms like LeetCode</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= CONTACT ================= -->
+  <section id="contact" class="py-12 md:py-20 border-t border-neutral-800/70">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="mb-8">
+        <h2 class="text-2xl font-bold text-white mb-2">Let’s Connect</h2>
+        <p class="text-neutral-400">Reach out for opportunities, collaborations, or discussions on tech innovations.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6 items-start">
+        <div class="space-y-4">
+          <a href="mailto:mobiyashmidayalan@gmail.com" class="block rounded-3xl p-5 border border-neutral-800 bg-neutral-900 card-hover">
+            <div class="flex items-center gap-3"><i data-lucide="mail"></i><div>
+              <div class="font-semibold">Email</div>
+              <div class="text-sm text-neutral-400">mobiyashmidayalan@gmail.com</div>
+            </div></div>
+          </a>
+          <a href="https://www.linkedin.com/in/mobiyashmi" target="_blank" class="block rounded-3xl p-5 border border-neutral-800 bg-neutral-900 card-hover">
+            <div class="flex items-center gap-3"><i data-lucide="linkedin"></i><div>
+              <div class="font-semibold">LinkedIn</div>
+              <div class="text-sm text-neutral-400">in/mobiyashmi</div>
+            </div></div>
+          </a>
+          <a href="https://github.com/MOBIYASHMI" target="_blank" class="block rounded-3xl p-5 border border-neutral-800 bg-neutral-900 card-hover">
+            <div class="flex items-center gap-3"><i data-lucide="github"></i><div>
+              <div class="font-semibold">GitHub</div>
+              <div class="text-sm text-neutral-400">github.com/MOBIYASHMI</div>
+            </div></div>
+          </a>
+        </div>
+
+        <form class="space-y-3" onsubmit="event.preventDefault(); alert('Thanks! Form demo only. Connect your backend or use Formspree/Netlify.');">
+          <div class="form-floating">
+            <input type="text" class="form-control bg-neutral-900 text-neutral-100 border border-neutral-700" id="nameInput" placeholder="Your Name" required>
+            <label for="nameInput">Your Name</label>
+          </div>
+          <div class="form-floating">
+            <input type="email" class="form-control bg-neutral-900 text-neutral-100 border border-neutral-700" id="emailInput" placeholder="name@example.com" required>
+            <label for="emailInput">Email address</label>
+          </div>
+          <div class="form-floating">
+            <textarea class="form-control bg-neutral-900 text-neutral-100 border border-neutral-700" placeholder="Leave a message here" id="messageInput" style="height: 120px" required></textarea>
+            <label for="messageInput">Message</label>
+          </div>
+          <button type="submit" class="btn btn-primary rounded-pill">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+  
+  
+  <!-- ================= FOOTER ================= -->
+  <footer class="py-10">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-neutral-400">
+        <div>© <span id="year"></span> Mobiyashmi Dayalan. All rights reserved.</div>
+        <div class="flex items-center gap-3">
+          <a href="#intro" class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-neutral-700 hover:bg-neutral-900"><i data-lucide="arrow-up"></i> Back to top</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ====== JS (load once) ====== -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+            crossorigin="anonymous"></script>
+
+  <script>
+      // Lucide icons
+      document.addEventListener('DOMContentLoaded', () => { if (window.lucide) lucide.createIcons(); });
+
+      // Theme (default dark; persist toggle if you still use themeToggle)
+      (function initTheme(){
+        const stored = localStorage.getItem('theme');
+        const html = document.documentElement;
+        if (stored === 'light') html.classList.remove('dark'); else html.classList.add('dark');
+      })();
+
+      // Footer year
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      // Simple typewriter for name (your existing code kept)
+      document.addEventListener("DOMContentLoaded", () => {
+        const text = "Mobiyashmi Dayalan";
+        const typingElement = document.querySelector(".typing");
+        if (!typingElement) return;
+        let index = 0;
+        let isDeleting = false;
+        const speed = 120;
+        const delay = 1000;
+
+        function typeEffect() {
+          if (!isDeleting && index < text.length) {
+            typingElement.textContent += text.charAt(index);
+            index++;
+            setTimeout(typeEffect, speed);
+          } else if (!isDeleting && index === text.length) {
+            isDeleting = true;
+            setTimeout(typeEffect, delay);
+          } else if (isDeleting && index > 0) {
+            typingElement.textContent = text.substring(0, index - 1);
+            index--;
+            setTimeout(typeEffect, speed / 2);
+          } else if (isDeleting && index === 0) {
+            isDeleting = false;
+            setTimeout(typeEffect, speed);
+          }
+        }
+        typeEffect();
+      });
+
+      // Typing header animation
+      document.addEventListener("DOMContentLoaded", () => {
+        const typingHeaders = document.querySelectorAll(".typing-header");
+        typingHeaders.forEach((header) => {
+          const text = header.getAttribute("data-text") || "";
+          let idx = 0;
+          let deleting = false;
+
+          function tick() {
+            if (!deleting && idx <= text.length) {
+              header.textContent = text.substring(0, idx);
+              idx++;
+              if (idx > text.length) {
+                deleting = true; setTimeout(tick, 1000); return;
+              }
+            } else if (deleting && idx >= 0) {
+              header.textContent = text.substring(0, idx);
+              idx--;
+              if (idx < 0) { deleting = false; setTimeout(tick, 500); return; }
+            }
+            setTimeout(tick, deleting ? 100 : 200);
+          }
+          tick();
+        });
+      });
+
+      // Project filters (kept original)
+      const grid = document.getElementById('projectGrid');
+      const filterBar = document.getElementById('projectFilters');
+      if (grid && filterBar){
+        filterBar.addEventListener('click', (e) => {
+          const btn = e.target.closest('button[data-filter]');
+          if (!btn) return;
+          const filter = btn.getAttribute('data-filter');
+          [...filterBar.querySelectorAll('button')].forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          grid.querySelectorAll('article').forEach(card => {
+            const tags = (card.getAttribute('data-tags') || '').split(',');
+            const show = filter === 'all' || tags.includes(filter);
+            card.style.display = show ? '' : 'none';
+          });
+        });
+      }
+
+      // Project modal populate (unchanged)
+      const projectModal = document.getElementById('projectModal');
+      if (projectModal){
+        projectModal.addEventListener('show.bs.modal', (event) => {
+          const button = event.relatedTarget;
+          const title = button?.getAttribute('data-title') || 'Project';
+          const desc = button?.getAttribute('data-desc') || '';
+          const img = button?.getAttribute('data-img') || '';
+          projectModal.querySelector('.modal-title').textContent = title;
+          projectModal.querySelector('#projectModalDesc').textContent = desc;
+          const imgEl = projectModal.querySelector('#projectModalImg');
+          imgEl.src = img; imgEl.alt = title + ' preview';
+        });
+      }
+
+      // Smooth internal link focus (a11y)
+      document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', () => {
+          const id = a.getAttribute('href').slice(1);
+          const target = document.getElementById(id);
+          if (target) target.setAttribute('tabindex','-1');
+        })
+      })
+
+        const mobileToggle = document.getElementById("mobileToggle");
+        const mobileMenu = document.getElementById("mobileMenu");
+        const mobileLinks = mobileMenu.querySelectorAll("a");
+
+        // Toggle open/close
+        mobileToggle.addEventListener("click", () => {
+            mobileMenu.classList.toggle("hidden");
+        });
+
+        // Close when a menu link is clicked
+        mobileLinks.forEach(link => {
+            link.addEventListener("click", () => {
+            mobileMenu.classList.add("hidden");
+            });
+        });
+  </script>
+ 
+
+
+</body>
+</html>
