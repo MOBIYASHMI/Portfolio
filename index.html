@@ -39,7 +39,7 @@
   <!-- Custom CSS -->
   <style>
     :root{ --radius: 1rem }
-    html{ scroll-padding-top: 60px }
+    html{ scroll-padding-top: 10px }
 
     /* Toggler icon always visible */
     .navbar-dark .navbar-toggler-icon,
@@ -87,16 +87,20 @@
       box-shadow: 0 8px 20px rgba(245,215,66,0.4);
     }
     .blob img { width: 90%; height: 94%; object-fit: cover; border-radius: 50%; }
-    .skill-card { background: #1e293b; border-radius: 1rem; padding: 2rem; transition: all 0.4s ease; box-shadow: 0 0 15px rgba(255, 215, 0, 0.2); }
+    .skill-card { background: #1e293b; border-radius: 1rem; padding: 1rem; transition: all 0.4s ease; box-shadow: 0 0 15px rgba(255, 215, 0, 0.2); }
     .skill-card:hover { transform: translateY(-8px) scale(1.03); box-shadow: 0 0 30px #ffd700; }
     .skill-title { font-size: 1.3rem; font-weight: 700; color: #f5d742; margin-bottom: 1rem; }
     .skill-list { display:flex;flex-wrap:wrap;gap:.8rem; }
     .skill-chip { display:flex; align-items:center; gap:.5rem; background:#e2e8f0; color:#000; padding:.6rem 1rem; border-radius:.7rem; font-weight:500; transition:.3s; }
     .skill-chip img { width:26px; height:26px; }
     .skill-chip:hover { background:#ffd700; color:#000; transform:scale(1.08); }
+    .filter:hover { transform: translateY(-8px) scale(1.03); box-shadow: 0 0 30px #ffd700; }
+    .project-card:hover { transform: translateY(-8px) scale(1.03); box-shadow: 0 0 30px #ffd700; }
   </style>
 </head>
-<body class="bg-[#0f172a] text-gray-200">
+<body class="bg-black text-gray-200">
+  <!-- <body class="bg-[#0f172a] text-gray-200"> -->
+
 
   <!-- NAVBAR -->
   <nav class="fixed top-0 left-0 w-full z-50 bg-slate-900/90 backdrop-blur shadow" style="height:60px;padding-top: 6px;">
@@ -146,7 +150,7 @@
   </nav>
 
   <!-- INTRO -->
-  <section id="intro" class="pt-20 flex items-center justify-center min-h-screen w-full bg-slate-800">
+  <section id="intro" class="pt-20 flex items-center justify-center min-h-screen w-full bg-black">
     <div class="flex flex-col-reverse md:flex-row items-center md:gap-20 gap-12 w-full max-w-8xl mx-auto px-6">
       <!-- Text -->
       <div class="md:w-1/2 text-center md:text-left">
@@ -203,11 +207,11 @@
   </section>
 
   <!-- SKILLS SECTION -->
-  <section id="skills" class="py-12 md:py-20 bg-slate-900">
+  <section id="skills" class="py-12 md:py-20 bg-black">
     <div class="max-w-7xl mx-auto px-6">
       
       <!-- Header (Removed typing effect, aligned left) -->
-      <div class="mb-16">
+      <div class="mb-8">
         <h2 class="text-2xl font-bold text-white">Skills</h2>
       </div>
 
@@ -226,7 +230,7 @@
           <div class="skill-list">
             <span class="skill-chip"><img src="https://skillicons.dev/icons?i=spring"/><p>Spring Boot</p></span>
             <span class="skill-chip"><img src="https://skillicons.dev/icons?i=spring"/><p>Spring Security</p></span>
-            <span class="skill-chip"><img src="https://skillicons.dev/icons?i=thymeleaf"/><p>Thymeleaf</p></span>
+            <span class="skill-chip"><img src="images/thymeleaf.png"/><p>Thymeleaf</p></span>
           </div>
         </div>
 
@@ -246,7 +250,7 @@
           <div class="skill-list">
             <span class="skill-chip"><img src="https://skillicons.dev/icons?i=mysql"/><p>MySQL</p></span>
             <span class="skill-chip"><img src="https://skillicons.dev/icons?i=mongodb"/><p>MongoDB</p></span>
-            <span class="skill-chip"><img src="https://skillicons.dev/icons?i=rest"/><p>REST APIs</p></span>
+            <span class="skill-chip"><img src="images/rest.jpg"/><p>REST APIs</p></span>
           </div>
         </div>
 
@@ -256,23 +260,24 @@
             <span class="skill-chip"><img src="https://skillicons.dev/icons?i=github"/><p>GitHub</p></span>
             <span class="skill-chip"><img src="https://skillicons.dev/icons?i=maven"/><p>Maven</p></span>
             <span class="skill-chip"><img src="https://skillicons.dev/icons?i=postman"/><p>Postman</p></span>
-            <span class="skill-chip"><img src="https://skillicons.dev/icons?i=swagger"/><p>Swagger</p></span>
+            <span class="skill-chip"><img src="images/swagger.png"/><p>Swagger</p></span>
           </div>
         </div>
 
         <div class="skill-card">
           <h3 class="skill-title">Testing & Security</h3>
           <div class="skill-list">
-            <span class="skill-chip"><img src="https://skillicons.dev/icons?i=junit"/><p>JUnit</p></span>
-            <span class="skill-chip"><img src="https://skillicons.dev/icons?i=mockito"/><p>Mockito</p></span>
-            <span class="skill-chip"><img src="https://skillicons.dev/icons?i=jwt"/><p>JWT</p></span>
+            <span class="skill-chip"><p>JUnit</p></span>
+            <span class="skill-chip"><p>Mockito</p></span>
+            <span class="skill-chip"><p>JWT</p></span>
           </div>
         </div>
       </div>
     </div>
   </section>
+
 <!-- ================= PROJECTS ================= -->
-<section id="projects" class="py-20 bg-gray-900 text-white">
+<section id="projects" class="py-20 bg-black text-white">
   <div class="container mx-auto px-6">
     <div class="mb-8 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
       <div>
@@ -280,10 +285,10 @@
         <p class="text-neutral-400">Showcasing practical applications of full-stack skills in real-world scenarios.</p>
       </div>
       <div class="flex flex-wrap gap-2 justify-center" id="projectFilters">
-        <button class="btn btn-sm btn-outline-light rounded-pill active" data-filter="all">All</button>
-        <button class="btn btn-sm btn-outline-light rounded-pill" data-filter="backend">Backend</button>
-        <button class="btn btn-sm btn-outline-light rounded-pill" data-filter="frontend">Frontend</button>
-        <button class="btn btn-sm btn-outline-light rounded-pill" data-filter="fullstack">Full-Stack</button>
+        <button class="filter btn btn-sm btn-outline-light rounded-pill active" data-filter="all">All</button>
+        <button class="filter btn btn-sm btn-outline-light rounded-pill" data-filter="backend">Backend</button>
+        <button class="filter btn btn-sm btn-outline-light rounded-pill" data-filter="frontend">Frontend</button>
+        <button class="filter btn btn-sm btn-outline-light rounded-pill" data-filter="fullstack">Full-Stack</button>
       </div>
     </div>
 
@@ -291,132 +296,134 @@
     <div class="project-container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="projectGrid">
 
       <!-- Project 1 -->
-      <article class="group card-hover rounded-3xl overflow-hidden border border-neutral-800 bg-neutral-900 flex flex-col h-full" data-tags="backend">
+      <article class="project-card group card-hover rounded-3xl overflow-hidden border border-neutral-700 bg-neutral-900 flex flex-col h-full" data-tags="backend">
         <div class="relative h-48 overflow-hidden">
           <img class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.05]" src="images/elastic-search.jpg" alt="Elasticsearch project screenshot">
         </div>
         <div class="p-4 flex flex-col flex-1">
           <div class="flex items-center justify-between">
             <h3 class="font-semibold text-sm">Elasticsearch Integration Project</h3>
-            <a href="https://github.com/MOBIYASHMI/Elastic-Search" class="inline-flex items-center gap-1 text-accent hover:underline text-xs">View <i data-lucide="external-link"></i></a>
+            <a href="https://github.com/MOBIYASHMI/Elastic-Search" class="inline-flex items-center gap-1 text-blue-600 hover:text-violet-400 text-xs">View <i data-lucide="external-link"></i></a>
           </div>
           <p class="mt-1 text-xs text-neutral-400">A Java Spring Boot project with a Python microservice, integrating Elasticsearch for search capabilities and using an ML model for embedding vectors.</p>
-          <div class="mt-2 flex flex-wrap gap-2">
-            <span class="text-xs px-1 py-0.5 rounded-full bg-neutral-800 border border-neutral-700">Java</span>
-            <span class="text-xs px-1 py-0.5 rounded-full bg-neutral-800 border border-neutral-700">Spring Boot</span>
-            <span class="text-xs px-1 py-0.5 rounded-full bg-neutral-800 border border-neutral-700">Python</span>
-            <span class="text-xs px-1 py-0.5 rounded-full bg-neutral-800 border border-neutral-700">Elasticsearch</span>
-            <span class="text-xs px-1 py-0.5 rounded-full bg-neutral-800 border border-neutral-700">Machine Learning</span>
+          <div class="mt-3 flex flex-wrap gap-2">
+            <span class="text-xs px-2 py-1 rounded-full bg-neutral-800 border-1 border-yellow-400">Java</span>
+            <span class="text-xs px-2 py-1 rounded-full bg-neutral-800 border-1 border-yellow-400">Spring Boot</span>
+            <span class="text-xs px-2 py-1 rounded-full bg-neutral-800 border-1 border-yellow-400">Python</span>
+            <span class="text-xs px-2 py-1 rounded-full bg-neutral-800 border-1 border-yellow-400">Elasticsearch</span>
+            <span class="text-xs px-2 py-1 rounded-full bg-neutral-800 border-1 border-yellow-400">Machine Learning</span>
           </div>
-          <div class="mt-auto pt-2 flex items-center gap-2">
-            <a href="https://github.com/MOBIYASHMI/Elastic-Search" class="inline-flex items-center gap-1 text-xs"><i data-lucide="github"></i> Code</a>
+          <div class="mt-2 pt-2 flex items-center gap-2">
+            <a href="https://github.com/MOBIYASHMI/Elastic-Search" class="inline-flex items-center gap-1 text-xs text-accent text-accent"><i data-lucide="github" class="text-accent"></i> Code</a>
             <button class="inline-flex items-center gap-1 text-xs" data-bs-toggle="modal" data-bs-target="#projectModal" data-title="Elasticsearch Integration Project" data-desc="Developed a Spring Boot application with a Python microservice to handle Elasticsearch indexing and search, utilizing an ML model for vector embeddings to enhance search relevance." data-img="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop">Details</button>
           </div>
         </div>
       </article>
 
       <!-- Project 2 -->
-      <article class="group card-hover rounded-3xl overflow-hidden border border-neutral-800 bg-neutral-900 flex flex-col h-full" data-tags="fullstack">
+      <article class="project-card group card-hover rounded-3xl overflow-hidden border border-neutral-700 bg-neutral-900 flex flex-col h-full" data-tags="fullstack">
         <div class="relative h-48 overflow-hidden">
           <img class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.05]" src="images/bus-booking.jpg" alt="Bus booking screenshot">
         </div>
         <div class="p-4 flex flex-col flex-1">
           <div class="flex items-center justify-between">
             <h3 class="font-semibold text-sm">Online Bus Ticket Booking Application</h3>
-            <a href="https://drive.google.com/drive/folders/1qYczcGIzxemnvFvlI8eLvE3qWQ7w7dpq?usp=drive_link" class="inline-flex items-center gap-1 text-accent hover:underline text-xs">View <i data-lucide="external-link"></i></a>
+            <a href="https://drive.google.com/drive/folders/1qYczcGIzxemnvFvlI8eLvE3qWQ7w7dpq?usp=drive_link" class="inline-flex items-center gap-1 text-blue-600 hover:text-violet-400 text-xs">View <i data-lucide="external-link"></i></a>
           </div>
           <p class="mt-1 text-xs text-neutral-400">Secure full-stack app for bus reservations with role-based access, JWT authentication, and comprehensive unit testing for reliability.</p>
-          <div class="mt-2 flex flex-wrap gap-2">
-            <span class="text-xs px-1 py-0.5 rounded-full bg-neutral-800 border border-neutral-700">Java</span>
-            <span class="text-xs px-1 py-0.5 rounded-full bg-neutral-800 border border-neutral-700">Spring Boot</span>
-            <span class="text-xs px-1 py-0.5 rounded-full bg-neutral-800 border border-neutral-700">Thymeleaf</span>
-            <span class="text-xs px-1 py-0.5 rounded-full bg-neutral-800 border border-neutral-700">MySQL</span>
-            <span class="text-xs px-1 py-0.5 rounded-full bg-neutral-800 border border-neutral-700">JWT</span>
-            <span class="text-xs px-1 py-0.5 rounded-full bg-neutral-800 border border-neutral-700">Spring Security</span>
-            <span class="text-xs px-1 py-0.5 rounded-full bg-neutral-800 border border-neutral-700">HTML/CSS/Bootstrap</span>
-            <span class="text-xs px-1 py-0.5 rounded-full bg-neutral-800 border border-neutral-700">JUnit/Mockito</span>
+          <div class="mt-3 flex flex-wrap gap-2">
+            <span class="text-xs px-2 py-1 rounded-full bg-neutral-800 border-1 border-yellow-400">Java</span>
+            <span class="text-xs px-2 py-1 rounded-full bg-neutral-800 border-1 border-yellow-400">Spring Boot</span>
+            <span class="text-xs px-2 py-1 rounded-full bg-neutral-800 border-1 border-yellow-400">Thymeleaf</span>
+            <span class="text-xs px-2 py-1 rounded-full bg-neutral-800 border-1 border-yellow-400">MySQL</span>
+            <span class="text-xs px-2 py-1 rounded-full bg-neutral-800 border-1 border-yellow-400">JWT</span>
+            <span class="text-xs px-2 py-1 rounded-full bg-neutral-800 border-1 border-yellow-400">Spring Security</span>
+            <span class="text-xs px-2 py-1 rounded-full bg-neutral-800 border-1 border-yellow-400">HTML/CSS/Bootstrap</span>
+            <span class="text-xs px-2 py-1 rounded-full bg-neutral-800 border-1 border-yellow-400">JUnit/Mockito</span>
           </div>
-          <div class="mt-auto pt-2 flex items-center gap-2">
-            <a href="https://github.com/MOBIYASHMI/TicketBooking" class="inline-flex items-center gap-1 text-xs"><i data-lucide="github"></i> Code</a>
+          <div class="mt-2 pt-2 flex items-center gap-2">
+            <a href="https://github.com/MOBIYASHMI/TicketBooking" class="inline-flex items-center gap-1 text-xs text-accent"><i data-lucide="github" class="text-accent"></i> Code</a>
             <button class="inline-flex items-center gap-1 text-xs" data-bs-toggle="modal" data-bs-target="#projectModal" data-title="Online Bus Ticket Booking Application" data-desc="Developed REST APIs and integrated JWT-based authentication for secure log-in and role-based access (admin/passenger). Implemented reservation, seat selection, and cancellation functionality, with unit testing using JUnit and Mockito." data-img="https://images.unsplash.com/photo-1521747116042-5a810fda42c4?q=80&w=1200&auto=format&fit=crop">Details</button>
           </div>
         </div>
       </article>
 
       <!-- Project 3 -->
-      <article class="group card-hover rounded-3xl overflow-hidden border border-neutral-800 bg-neutral-900 flex flex-col h-full" data-tags="fullstack">
+      <article class="project-card group card-hover rounded-3xl overflow-hidden border border-neutral-700 bg-neutral-900 flex flex-col h-full" data-tags="fullstack">
         <div class="relative h-48 overflow-hidden">
           <img class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.05]" src="images/medical-management.jpg" alt="Appointment system screenshot">
         </div>
         <div class="p-4 flex flex-col flex-1">
           <div class="flex items-center justify-between">
             <h3 class="font-semibold text-sm">Appointment Management System</h3>
-            <a href="https://drive.google.com/drive/folders/1_HtNIaGCZQ8i71GzztKPJwVJeewS5Y7-?usp=drive_link" class="inline-flex items-center gap-1 text-accent hover:underline text-xs">View <i data-lucide="external-link"></i></a>
+            <a href="https://drive.google.com/drive/folders/1_HtNIaGCZQ8i71GzztKPJwVJeewS5Y7-?usp=drive_link" class="inline-flex items-center gap-1 text-blue-600 hover:text-violet-400 text-xss">View <i data-lucide="external-link"></i></a>
           </div>
           <p class="mt-1 text-xs text-neutral-400">Role-based secure system for managing appointments, with robust unit testing to ensure data validation and application reliability.</p>
-          <div class="mt-2 flex flex-wrap gap-2">
-            <span class="text-xs px-1 py-0.5 rounded-full bg-neutral-800 border border-neutral-700">Java</span>
-            <span class="text-xs px-1 py-0.5 rounded-full bg-neutral-800 border border-neutral-700">Spring Boot</span>
-            <span class="text-xs px-1 py-0.5 rounded-full bg-neutral-800 border border-neutral-700">Thymeleaf</span>
-            <span class="text-xs px-1 py-0.5 rounded-full bg-neutral-800 border border-neutral-700">MySQL</span>
-            <span class="text-xs px-1 py-0.5 rounded-full bg-neutral-800 border border-neutral-700">Spring Security</span>
-            <span class="text-xs px-1 py-0.5 rounded-full bg-neutral-800 border border-neutral-700">HTML/CSS/Bootstrap</span>
-            <span class="text-xs px-1 py-0.5 rounded-full bg-neutral-800 border border-neutral-700">JUnit/Mockito</span>
+          <div class="mt-3 flex flex-wrap gap-2">
+            <span class="text-xs px-2 py-1 rounded-full bg-neutral-800 border-1 border-yellow-400">Java</span>
+            <span class="text-xs px-2 py-1 rounded-full bg-neutral-800 border-1 border-yellow-400">Spring Boot</span>
+            <span class="text-xs px-2 py-1 rounded-full bg-neutral-800 border-1 border-yellow-400">Thymeleaf</span>
+            <span class="text-xs px-2 py-1 rounded-full bg-neutral-800 border-1 border-yellow-400">MySQL</span>
+            <span class="text-xs px-2 py-1 rounded-full bg-neutral-800 border-1 border-yellow-400">Spring Security</span>
+            <span class="text-xs px-2 py-1 rounded-full bg-neutral-800 border-1 border-yellow-400">HTML/CSS/Bootstrap</span>
+            <span class="text-xs px-2 py-1 rounded-full bg-neutral-800 border-1 border-yellow-400">JUnit/Mockito</span>
           </div>
-          <div class="mt-auto pt-2 flex items-center gap-2">
-            <a href="https://github.com/MOBIYASHMI/MedicalManagement" class="inline-flex items-center gap-1 text-xs"><i data-lucide="github"></i> Code</a>
+          <div class="mt-2 pt-2 flex items-center gap-2">
+            <a href="https://github.com/MOBIYASHMI/MedicalManagement" class="inline-flex items-center gap-1 text-xs text-accent"><i data-lucide="github" class="text-accent"></i> Code</a>
             <button class="inline-flex items-center gap-1 text-xs" data-bs-toggle="modal" data-bs-target="#projectModal" data-title="Doctor-Patient Appointment Management System" data-desc="Designed a secure role-based login system for doctors and patients, enabling appointment booking, viewing, and cancellation. Implemented service-level unit testing using Mockito to ensure reliability and data validation." data-img="https://images.unsplash.com/photo-1585435557343-7b425eb5e67d?q=80&w=1200&auto=format&fit=crop">Details</button>
           </div>
         </div>
       </article>
 
       <!-- Project 4 -->
-      <article class="group card-hover rounded-3xl overflow-hidden border border-neutral-800 bg-neutral-900 flex flex-col h-full" data-tags="fullstack">
+      <article class="project-card group card-hover rounded-3xl overflow-hidden border border-neutral-700 bg-neutral-900 flex flex-col h-full" data-tags="fullstack">
         <div class="relative h-48 overflow-hidden">
           <img class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.05]" src="images/Employee-Management.jpg" alt="Appointment system screenshot">
         </div>
         <div class="p-4 flex flex-col flex-1">
           <div class="flex items-center justify-between">
             <h3 class="font-semibold text-sm">Employee Management System</h3>
-            <a href="https://github.com/MOBIYASHMI/EmployeeMangement" class="inline-flex items-center gap-1 text-accent hover:underline text-xs">View <i data-lucide="external-link"></i></a>
+            <a href="https://github.com/MOBIYASHMI/EmployeeMangement" class="inline-flex items-center gap-1 text-blue-600 hover:text-violet-400 text-xs">View <i data-lucide="external-link"></i></a>
           </div>
-          <p class="mt-1 text-xs text-neutral-400">Role-based secure system for managing appointments, with robust unit testing to ensure data validation and application reliability.</p>
-          <div class="mt-2 flex flex-wrap gap-2">
-            <span class="text-xs px-1 py-0.5 rounded-full bg-neutral-800 border border-neutral-700">Java</span>
-            <span class="text-xs px-1 py-0.5 rounded-full bg-neutral-800 border border-neutral-700">Spring Boot</span>
-            <span class="text-xs px-1 py-0.5 rounded-full bg-neutral-800 border border-neutral-700">Thymeleaf</span>
-            <span class="text-xs px-1 py-0.5 rounded-full bg-neutral-800 border border-neutral-700">MySQL</span>
+          <p class="mt-1 text-xs text-neutral-400">Employee management system with basic CRUD operations and a simple frontend for handling staff records efficiently.</p>
+          <div class="mt-3 flex flex-wrap gap-2">
+            <span class="text-xs px-2 py-1 rounded-full bg-neutral-800 border-1 border-yellow-400">Java</span>
+            <span class="text-xs px-2 py-1 rounded-full bg-neutral-800 border-1 border-yellow-400">Spring Boot</span>
+            <span class="text-xs px-2 py-1 rounded-full bg-neutral-800 border-1 border-yellow-400">Thymeleaf</span>
+            <span class="text-xs px-2 py-1 rounded-full bg-neutral-800 border-1 border-yellow-400">MySQL</span>
             <!-- <span class="text-xs px-1 py-0.5 rounded-full bg-neutral-800 border border-neutral-700">Spring Security</span> -->
-            <span class="text-xs px-1 py-0.5 rounded-full bg-neutral-800 border border-neutral-700">HTML/CSS/Bootstrap</span>
+            <span class="text-xs px-2 py-1 rounded-full bg-neutral-800 border-1 border-yellow-400">HTML/CSS/Bootstrap</span>
             <!-- <span class="text-xs px-1 py-0.5 rounded-full bg-neutral-800 border border-neutral-700">JUnit/Mockito</span> -->
           </div>
-          <div class="mt-auto pt-2 flex items-center gap-2">
-            <a href="https://github.com/MOBIYASHMI/EmployeeMangement" class="inline-flex items-center gap-1 text-xs"><i data-lucide="github"></i> Code</a>
-            <button class="inline-flex items-center gap-1 text-xs" data-bs-toggle="modal" data-bs-target="#projectModal" data-title="Doctor-Patient Appointment Management System" data-desc="Designed a secure role-based login system for doctors and patients, enabling appointment booking, viewing, and cancellation. Implemented service-level unit testing using Mockito to ensure reliability and data validation." data-img="https://images.unsplash.com/photo-1585435557343-7b425eb5e67d?q=80&w=1200&auto=format&fit=crop">Details</button>
+          <div class="mt-2 pt-2 flex items-center gap-2">
+            <a href="https://github.com/MOBIYASHMI/EmployeeMangement" class="inline-flex items-center gap-1 text-xs text-accent"><i data-lucide="github" class="text-accent"></i> Code</a>
+            <button class="inline-flex items-center gap-1 text-xs" data-bs-toggle="modal" data-bs-target="#projectModal" data-title="Doctor-Patient Appointment Management System" data-desc="A full-stack Employee Management Application that enables creating, updating, viewing, and deleting employee records. 
+  Built with a structured backend for reliable data handling and a user-friendly frontend for seamless interaction, 
+  ensuring efficient workforce data management." data-img="https://images.unsplash.com/photo-1585435557343-7b425eb5e67d?q=80&w=1200&auto=format&fit=crop">Details</button>
           </div>
         </div>
       </article>
 
       <!-- Project 5 -->
-      <article class="group card-hover rounded-3xl overflow-hidden border border-neutral-800 bg-neutral-900 flex flex-col h-full" data-tags="frontend">
+      <article class="project-card group card-hover rounded-3xl overflow-hidden border border-neutral-700 bg-neutral-900 flex flex-col h-full" data-tags="frontend">
         <div class="relative h-48 overflow-hidden">
           <img class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.05]" src="images/portfolio.jpg" alt="Portfolio project screenshot">
         </div>
         <div class="p-4 flex flex-col flex-1">
           <div class="flex items-center justify-between">
             <h3 class="font-semibold text-sm">Personal Portfolio Website</h3>
-            <a href="https://github.com/MOBIYASHMI/portfolio" class="inline-flex items-center gap-1 text-accent hover:underline text-xs">View <i data-lucide="external-link"></i></a>
+            <a href="https://github.com/MOBIYASHMI/Portfolio" class="inline-flex items-center gap-1 text-blue-600 hover:text-violet-400 text-xs">View <i data-lucide="external-link"></i></a>
           </div>
           <p class="mt-1 text-xs text-neutral-400">A responsive portfolio website built using HTML, CSS, JavaScript, Tailwind and Bootstrap to showcase projects and skills.</p>
-          <div class="mt-2 flex flex-wrap gap-2">
-            <span class="text-xs px-1 py-0.5 rounded-full bg-neutral-800 border border-neutral-700">HTML</span>
-            <span class="text-xs px-1 py-0.5 rounded-full bg-neutral-800 border border-neutral-700">CSS</span>
-            <span class="text-xs px-1 py-0.5 rounded-full bg-neutral-800 border border-neutral-700">JavaScript</span>
-            <span class="text-xs px-1 py-0.5 rounded-full bg-neutral-800 border border-neutral-700">Bootstrap</span>
-            <span class="text-xs px-1 py-0.5 rounded-full bg-neutral-800 border border-neutral-700">Tailwind CSS</span>
+          <div class="mt-3 flex flex-wrap gap-2">
+            <span class="text-xs px-2 py-1 rounded-full bg-neutral-800 border-1 border-yellow-400">HTML</span>
+            <span class="text-xs px-2 py-1 rounded-full bg-neutral-800 border-1 border-yellow-400">CSS</span>
+            <span class="text-xs px-2 py-1 rounded-full bg-neutral-800 border-1 border-yellow-400">JavaScript</span>
+            <span class="text-xs px-2 py-1 rounded-full bg-neutral-800 border-1 border-yellow-400">Bootstrap</span>
+            <span class="text-xs px-2 py-1 rounded-full bg-neutral-800 border-1 border-yellow-400">Tailwind CSS</span>
           </div>
-          <div class="mt-auto pt-2 flex items-center gap-2">
-            <a href="https://github.com/MOBIYASHMI/portfolio" class="inline-flex items-center gap-1 text-xs"><i data-lucide="github"></i> Code</a>
+          <div class="mt-2 pt-2 flex items-center gap-2">
+            <a href="https://github.com/MOBIYASHMI/Portfolio" class="inline-flex items-center gap-1 text-xs text-accent"><i data-lucide="github" class="text-accent"></i> Code</a>
             <button class="inline-flex items-center gap-1 text-xs" data-bs-toggle="modal" data-bs-target="#projectModal" data-title="Personal Portfolio Website" data-desc="Created a dynamic portfolio site with a focus on user experience, featuring project showcases, skill highlights, and contact information using modern web technologies." data-img="https://images.unsplash.com/photo-1616469829755-9faef9e1f723?q=80&w=1200&auto=format&fit=crop">Details</button>
           </div>
         </div>
@@ -501,7 +508,9 @@
         <div class="rounded-3xl p-6 border border-neutral-800 bg-neutral-900">
           <h3 class="text-accent font-semibold mb-3">Education</h3>
           <ul class="list-disc list-inside text-neutral-300">
-            <li>B.E. in Printing and Packaging Technology — College of Engineering Guindy, Chennai, Tamil Nadu (July 2019 – June 2023) · CGPA: 8.88</li>
+            <li>B.E. in Printing and Packaging Technology — College of Engineering Guindy, Chennai, Tamil Nadu <br>
+            July 2019 – June 2023<br>
+            CGPA: 8.88</li>
           </ul>
         </div>
         <div class="rounded-3xl p-6 border border-neutral-800 bg-neutral-900">
@@ -533,7 +542,7 @@
               <div class="text-sm text-neutral-400">mobiyashmidayalan@gmail.com</div>
             </div></div>
           </a>
-          <a href="https://www.linkedin.com/in/mobiyashmi" target="_blank" class="block rounded-3xl p-5 border border-neutral-800 bg-neutral-900 card-hover">
+          <a href="https://www.linkedin.com/in/mobiyashmi/" target="_blank" class="block rounded-3xl p-5 border border-neutral-800 bg-neutral-900 card-hover">
             <div class="flex items-center gap-3"><i data-lucide="linkedin"></i><div>
               <div class="font-semibold">LinkedIn</div>
               <div class="text-sm text-neutral-400">in/mobiyashmi</div>
@@ -547,21 +556,21 @@
           </a>
         </div>
 
-        <form class="space-y-3" onsubmit="event.preventDefault(); alert('Thanks! Form demo only. Connect your backend or use Formspree/Netlify.');">
-          <div class="form-floating">
-            <input type="text" class="form-control bg-neutral-900 text-neutral-100 border border-neutral-700" id="nameInput" placeholder="Your Name" required>
-            <label for="nameInput">Your Name</label>
-          </div>
-          <div class="form-floating">
-            <input type="email" class="form-control bg-neutral-900 text-neutral-100 border border-neutral-700" id="emailInput" placeholder="name@example.com" required>
-            <label for="emailInput">Email address</label>
-          </div>
-          <div class="form-floating">
-            <textarea class="form-control bg-neutral-900 text-neutral-100 border border-neutral-700" placeholder="Leave a message here" id="messageInput" style="height: 120px" required></textarea>
-            <label for="messageInput">Message</label>
-          </div>
-          <button type="submit" class="btn btn-primary rounded-pill">Send Message</button>
-        </form>
+        <form action="https://formspree.io/f/mldwbbdr" method="POST" class="space-y-3">
+        <div class="form-floating">
+          <input type="text" name="name" class="form-control bg-neutral-900 text-neutral-100 border border-neutral-700" id="nameInput" placeholder="Your Name" required>
+          <label for="nameInput">Your Name</label>
+        </div>
+        <div class="form-floating">
+          <input type="email" name="email" class="form-control bg-neutral-900 text-neutral-100 border border-neutral-700" id="emailInput" placeholder="name@example.com" required>
+          <label for="emailInput">Email address</label>
+        </div>
+        <div class="form-floating">
+          <textarea name="message" class="form-control bg-neutral-900 text-neutral-100 border border-neutral-700" placeholder="Leave a message here" id="messageInput" style="height: 120px" required></textarea>
+          <label for="messageInput">Message</label>
+        </div>
+        <button type="submit" class="btn btn-primary rounded-pill">Send Message</button>
+      </form>
       </div>
     </div>
   </section>
