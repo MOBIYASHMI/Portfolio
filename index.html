@@ -824,7 +824,11 @@
           </a>
         </div>
 
-        <form action="https://formspree.io/f/mldwbbdr" method="POST" class="space-y-3">
+        <form id="contactForm" name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" class="space-y-3">
+        <input type="hidden" name="form-name" value="contact">
+        <p class="hidden">
+          <label>Don’t fill this out if you’re human: <input name="bot-field"></label>
+        </p>
         <div class="form-floating">
           <input type="text" name="name" class="form-control bg-neutral-900 text-neutral-100 border border-neutral-700" id="nameInput" placeholder="Your Name" required>
           <label for="nameInput">Your Name</label>
@@ -838,6 +842,7 @@
           <label for="messageInput">Message</label>
         </div>
         <button type="submit" class="btn btn-primary rounded-pill">Send Message</button>
+        <p id="contactFormStatus" class="text-sm mt-2"></p>
       </form>
       </div>
     </div>
@@ -988,6 +993,30 @@
             mobileMenu.classList.add("hidden");
             });
         });
+
+        // Netlify contact form (AJAX submit, no page reload)
+        const contactForm = document.getElementById("contactForm");
+        const contactFormStatus = document.getElementById("contactFormStatus");
+        if (contactForm) {
+          contactForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const data = new FormData(contactForm);
+            fetch("/", {
+              method: "POST",
+              headers: { "Content-Type": "application/x-www-form-urlencoded" },
+              body: new URLSearchParams(data).toString()
+            })
+              .then(() => {
+                contactFormStatus.textContent = "Thanks! Your message has been sent.";
+                contactFormStatus.className = "text-sm mt-2 text-accent";
+                contactForm.reset();
+              })
+              .catch(() => {
+                contactFormStatus.textContent = "Something went wrong. Please email me directly instead.";
+                contactFormStatus.className = "text-sm mt-2 text-red-400";
+              });
+          });
+        }
   </script>
  
 
