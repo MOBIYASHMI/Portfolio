@@ -994,29 +994,9 @@
             });
         });
 
-        // Netlify contact form (AJAX submit, no page reload)
-        const contactForm = document.getElementById("contactForm");
-        const contactFormStatus = document.getElementById("contactFormStatus");
-        if (contactForm) {
-          contactForm.addEventListener("submit", (e) => {
-            e.preventDefault();
-            const data = new FormData(contactForm);
-            fetch("/", {
-              method: "POST",
-              headers: { "Content-Type": "application/x-www-form-urlencoded" },
-              body: new URLSearchParams(data).toString()
-            })
-              .then(() => {
-                contactFormStatus.textContent = "Thanks! Your message has been sent.";
-                contactFormStatus.className = "text-sm mt-2 text-accent";
-                contactForm.reset();
-              })
-              .catch(() => {
-                contactFormStatus.textContent = "Something went wrong. Please email me directly instead.";
-                contactFormStatus.className = "text-sm mt-2 text-red-400";
-              });
-          });
-        }
+        // Netlify contact form — plain native submit (no JS interception) for now,
+        // so we can confirm Netlify is actually recording submissions before
+        // layering a no-reload AJAX experience back on top.
   </script>
  
 
